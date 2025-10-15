@@ -1,0 +1,42 @@
+<div class="container">
+  <h2 class="title">{{ editing ? 'Editar Jogo' : 'Cadastrar Jogo' }}</h2>
+
+  <div class="form-row">
+    <label>Nome</label>
+    <input class="input" [(ngModel)]="model.name" />
+  </div>
+
+  <div class="form-row">
+    <label>Descrição</label>
+    <textarea class="input" rows="4" [(ngModel)]="model.description"></textarea>
+  </div>
+
+  <div class="form-row">
+    <label>Data de início</label>
+    <input class="input" type="date" [(ngModel)]="model.startDate" />
+  </div>
+
+  <div class="form-row">
+    <label>Data de término (opcional)</label>
+    <input class="input" type="date" [(ngModel)]="model.endDate" />
+  </div>
+
+  <div class="form-row">
+    <label>Categoria</label>
+    <select class="input" [(ngModel)]="model.category">
+      <option *ngFor="let c of categories" [value]="c">{{c}}</option>
+    </select>
+  </div>
+
+  <div class="form-row">
+    <label>Usuários vinculados</label>
+    <select class="input" multiple [(ngModel)]="model.userIds">
+      <option *ngFor="let u of users" [value]="u.id">{{u.fullName}}</option>
+    </select>
+  </div>
+
+  <div style="display:flex; gap:8px;">
+    <button class="btn btn-primary" (click)="save()">{{ editing ? 'Atualizar' : 'Cadastrar' }}</button>
+    <button class="btn btn-ghost" (click)="clear()">Limpar</button>
+  </div>
+</div>
